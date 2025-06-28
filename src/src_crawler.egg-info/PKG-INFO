@@ -130,8 +130,7 @@ Dynamic: summary
 
 1. **克隆專案**
 ```bash
-git clone https://github.com/username/taiwan-south-tourism-crawler.git
-cd taiwan-south-tourism-crawler
+git clone https://github.com/sixvacation/workflows.git
 ```
 
 2. **設置虛擬環境**
