@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "==2.3.3"
+celery = "==5.5.0"
+crawler = {editable = true, path = "."}
+pandas = "*"
+requests = "*"
+apscheduler = "==3.10.4"
+loguru = "==0.6.0"
+sqlalchemy = "==1.4.54"
+pymysql = "==1.1.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
