@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台灣南部旅遊指南 - 台南、高雄、屏東</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="flex justify-between items-center">
+        <h1 class="site-logo">南台灣漫遊</h1>
+        <nav class="main-nav">
+          <ul class="nav-links">
+            <li><a href="#home" class="nav-link active" data-section="home">首頁</a></li>
+            <li><a href="#food" class="nav-link" data-section="food">美食指南</a></li>
+            <li><a href="#attractions" class="nav-link" data-section="attractions">景點導覽</a></li>
+            <li><a href="#activities" class="nav-link" data-section="activities">活動資訊</a></li>
+            <li><a href="#itineraries" class="nav-link" data-section="itineraries">行程規劃</a></li>
+            <li><a href="#transportation" class="nav-link" data-section="transportation">交通資訊</a></li>
+          </ul>
+        </nav>
+        <button class="btn btn--primary mobile-menu-toggle" aria-label="開啟選單">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 首頁區塊 -->
+    <section id="home" class="section section-home active">
+      <div class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h2 class="hero-title">探索台灣南部的美麗與魅力</h2>
+            <p class="hero-text">從台南的古蹟文化，到高雄的港都風光，再到屏東的自然景觀</p>
+            <div class="hero-actions">
+              <a href="#attractions" class="btn btn--primary" data-section="attractions">探索景點</a>
+              <a href="#itineraries" class="btn btn--outline" data-section="itineraries">瀏覽行程</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="section-title-container">
+          <h2 class="section-title">今日天氣資訊</h2>
+          <p class="section-subtitle">即時更新，助您規劃完美行程</p>
+        </div>
+        
+        <div class="weather-info">
+          <div class="weather-cards">
+            <div class="weather-card" data-city="tainan">
+              <h3>台南市</h3>
+              <div class="weather-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              </div>
+              <div class="weather-temp">32°C</div>
+              <div class="weather-desc">晴時多雲</div>
+            </div>
+            <div class="weather-card" data-city="kaohsiung">
+              <h3>高雄市</h3>
+              <div class="weather-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"></path><line x1="12" y1="9" x2="12" y2="2"></line><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line><line x1="1" y1="18" x2="3" y2="18"></line><line x1="21" y1="18" x2="23" y2="18"></line><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line><line x1="23" y1="22" x2="1" y2="22"></line><polyline points="8 6 12 2 16 6"></polyline></svg>
+              </div>
+              <div class="weather-temp">33°C</div>
+              <div class="weather-desc">晴朗</div>
+            </div>
+            <div class="weather-card" data-city="pingtung">
+              <h3>屏東縣</h3>
+              <div class="weather-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              </div>
+              <div class="weather-temp">30°C</div>
+              <div class="weather-desc">多雲</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title-container mt-8">
+          <h2 class="section-title">熱門景點推薦</h2>
+          <p class="section-subtitle">發現南台灣的人氣景點</p>
+        </div>
+
+        <div class="featured-spots">
+          <div class="featured-spot-card" data-city="tainan">
+            <div class="featured-spot-content">
+              <h3>台南赤崁樓</h3>
+              <p>國定古蹟，荷蘭時期建築</p>
+              <a href="#attractions" class="btn btn--sm btn--outline" data-section="attractions" data-filter="tainan">查看詳情</a>
+            </div>
+          </div>
+          <div class="featured-spot-card" data-city="kaohsiung">
+            <div class="featured-spot-content">
+              <h3>高雄駁二藝術特區</h3>
+              <p>港口倉庫改建的藝術特區</p>
+              <a href="#attractions" class="btn btn--sm btn--outline" data-section="attractions" data-filter="kaohsiung">查看詳情</a>
+            </div>
+          </div>
+          <div class="featured-spot-card" data-city="pingtung">
+            <div class="featured-spot-content">
+              <h3>墾丁國家公園</h3>
+              <p>台灣最南端的國家公園</p>
+              <a href="#attractions" class="btn btn--sm btn--outline" data-section="attractions" data-filter="pingtung">查看詳情</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title-container mt-8">
+          <h2 class="section-title">推薦行程</h2>
+          <p class="section-subtitle">精心規劃的南台灣旅遊體驗</p>
+        </div>
+
+        <div class="featured-itineraries">
+          <div class="featured-itinerary-card">
+            <div class="itinerary-header">
+              <h3>台南歷史文化2日遊</h3>
+              <span class="itinerary-duration">2天1夜</span>
+            </div>
+            <div class="itinerary-spots">
+              <span class="itinerary-spot">赤崁樓</span>
+              <span class="itinerary-spot">孔廟</span>
+            </div>
+            <a href="#itineraries" class="btn btn--sm btn--outline" data-section="itineraries">查看詳情</a>
+          </div>
+          <div class="featured-itinerary-card">
+            <div class="itinerary-header">
+              <h3>高雄港都3日遊</h3>
+              <span class="itinerary-duration">3天2夜</span>
+            </div>
+            <div class="itinerary-spots">
+              <span class="itinerary-spot">駁二藝術特區</span>
+              <span class="itinerary-spot">愛河</span>
+            </div>
+            <a href="#itineraries" class="btn btn--sm btn--outline" data-section="itineraries">查看詳情</a>
+          </div>
+          <div class="featured-itinerary-card">
+            <div class="itinerary-header">
+              <h3>南台灣經典5日遊</h3>
+              <span class="itinerary-duration">5天4夜</span>
+            </div>
+            <div class="itinerary-spots">
+              <span class="itinerary-spot">台南孔廟</span>
+              <span class="itinerary-spot">高雄駁二</span>
+            </div>
+            <a href="#itineraries" class="btn btn--sm btn--outline" data-section="itineraries">查看詳情</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食指南區塊 -->
+    <section id="food" class="section section-food">
+      <div class="container">
+        <div class="section-title-container">
+          <h2 class="section-title">南台灣美食指南</h2>
+          <p class="section-subtitle">探索米其林與必比登推薦餐廳</p>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="restaurant-city" class="filter-label">地區</label>
+            <select id="restaurant-city" class="form-control">
+              <option value="all">全部地區</option>
+              <option value="tainan">台南市</option>
+              <option value="kaohsiung">高雄市</option>
+              <option value="pingtung">屏東縣</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="restaurant-type" class="filter-label">類型</label>
+            <select id="restaurant-type" class="form-control">
+              <option value="all">全部類型</option>
+              <option value="michelin">米其林餐廳</option>
+              <option value="bibgourmand">必比登推薦</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="restaurant-cuisine" class="filter-label">菜系</label>
+            <select id="restaurant-cuisine" class="form-control">
+              <option value="all">全部菜系</option>
+              <option value="taiwanese">台灣料理</option>
+              <option value="chinese">中式料理</option>
+              <option value="japanese">日式料理</option>
+              <option value="western">西式料理</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="restaurants-container">
+          <!-- 餐廳資料由JavaScript動態載入 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 景點導覽區塊 -->
+    <section id="attractions" class="section section-attractions">
+      <div class="container">
+        <div class="section-title-container">
+          <h2 class="section-title">南台灣景點導覽</h2>
+          <p class="section-subtitle">探索台南、高雄、屏東的自然與人文景觀</p>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="attraction-city" class="filter-label">地區</label>
+            <select id="attraction-city" class="form-control">
+              <option value="all">全部地區</option>
+              <option value="tainan">台南市</option>
+              <option value="kaohsiung">高雄市</option>
+              <option value="pingtung">屏東縣</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="attractions-map-container">
+          <div id="attractions-map"></div>
+        </div>
+
+        <div class="attractions-container">
+          <!-- 景點資料由JavaScript動態載入 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 活動資訊區塊 -->
+    <section id="activities" class="section section-activities">
+      <div class="container">
+        <div class="section-title-container">
+          <h2 class="section-title">南台灣當期活動</h2>
+          <p class="section-subtitle">各種節慶、展覽與文化活動</p>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="activity-city" class="filter-label">地區</label>
+            <select id="activity-city" class="form-control">
+              <option value="all">全部地區</option>
+              <option value="tainan">台南市</option>
+              <option value="kaohsiung">高雄市</option>
+              <option value="pingtung">屏東縣</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="activities-container">
+          <!-- 活動資料由JavaScript動態載入 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 行程規劃區塊 -->
+    <section id="itineraries" class="section section-itineraries">
+      <div class="container">
+        <div class="section-title-container">
+          <h2 class="section-title">南台灣行程規劃</h2>
+          <p class="section-subtitle">精選旅遊路線，豐富您的旅遊體驗</p>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="itinerary-duration" class="filter-label">天數</label>
+            <select id="itinerary-duration" class="form-control">
+              <option value="all">全部天數</option>
+              <option value="1-2">1-2天</option>
+              <option value="3-4">3-4天</option>
+              <option value="5+">5天以上</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="itinerary-city" class="filter-label">地區</label>
+            <select id="itinerary-city" class="form-control">
+              <option value="all">全部地區</option>
+              <option value="tainan">台南市</option>
+              <option value="kaohsiung">高雄市</option>
+              <option value="pingtung">屏東縣</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="itineraries-container">
+          <!-- 行程資料由JavaScript動態載入 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 交通資訊區塊 -->
+    <section id="transportation" class="section section-transportation">
+      <div class="container">
+        <div class="section-title-container">
+          <h2 class="section-title">交通資訊</h2>
+          <p class="section-subtitle">即時交通動態與大眾運輸資訊</p>
+        </div>
+
+        <div class="transportation-types">
+          <div class="transportation-type active" data-type="bus">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-3m-5 0v16"/><path d="M5 11h14"/></svg>
+            <span>公車</span>
+          </div>
+          <div class="transportation-type" data-type="train">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 4v16"/></svg>
+            <span>台鐵</span>
+          </div>
+          <div class="transportation-type" data-type="hsr">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m3 8 7.75 2M3 12l7.75 2M3 16l7.75 2M13.25 8 21 6M13.25 10 21 8M13.25 12 21 10M13.25 14 21 12M13.25 16 21 14M13.25 18 21 16"/></svg>
+            <span>高鐵</span>
+          </div>
+          <div class="transportation-type" data-type="mrt">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="8" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>捷運</span>
+          </div>
+        </div>
+
+        <div class="transportation-content">
+          <div class="transportation-panel active" data-panel="bus">
+            <div class="transportation-search">
+              <div class="form-group">
+                <label for="bus-route" class="form-label">公車路線</label>
+                <div class="flex gap-8">
+                  <input type="text" id="bus-route" class="form-control" placeholder="輸入公車路線或站牌">
+                  <button class="btn btn--primary" id="search-bus">查詢</button>
+                </div>
+              </div>
+            </div>
+            <div class="bus-info">
+              <h3>熱門公車路線</h3>
+              <div class="bus-routes">
+                <div class="bus-route-item">
+                  <div class="bus-route-number">88</div>
+                  <div class="bus-route-info">
+                    <div class="bus-route-name">台南市區公車</div>
+                    <div class="bus-route-stops">台南火車站 → 赤崁樓 → 安平古堡</div>
+                  </div>
+                  <div class="bus-route-status status status--success">正常營運</div>
+                </div>
+                <div class="bus-route-item">
+                  <div class="bus-route-number">53</div>
+                  <div class="bus-route-info">
+                    <div class="bus-route-name">高雄市區公車</div>
+                    <div class="bus-route-stops">高雄火車站 → 夢時代 → 駁二藝術特區</div>
+                  </div>
+                  <div class="bus-route-status status status--success">正常營運</div>
+                </div>
+                <div class="bus-route-item">
+                  <div class="bus-route-number">9189</div>
+                  <div class="bus-route-info">
+                    <div class="bus-route-name">屏東客運</div>
+                    <div class="bus-route-stops">屏東轉運站 → 恆春 → 墾丁</div>
+                  </div>
+                  <div class="bus-route-status status status--warning">部分延誤</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="transportation-panel" data-panel="train">
+            <div class="transportation-search">
+              <div class="form-group">
+                <label class="form-label">台鐵車次查詢</label>
+                <div class="flex gap-8">
+                  <select class="form-control" id="train-from">
+                    <option value="">出發站</option>
+                    <option value="台南">台南</option>
+                    <option value="高雄">高雄</option>
+                    <option value="屏東">屏東</option>
+                  </select>
+                  <select class="form-control" id="train-to">
+                    <option value="">抵達站</option>
+                    <option value="台南">台南</option>
+                    <option value="高雄">高雄</option>
+                    <option value="屏東">屏東</option>
+                  </select>
+                  <button class="btn btn--primary" id="search-train">查詢</button>
+                </div>
+              </div>
+            </div>
+            <div class="train-schedule">
+              <h3>今日班次</h3>
+              <div class="train-schedule-list">
+                <div class="train-schedule-item">
+                  <div class="train-type">自強號</div>
+                  <div class="train-number">273</div>
+                  <div class="train-route">
+                    <div class="train-from">台南 <span class="train-time">14:30</span></div>
+                    <div class="train-arrow">→</div>
+                    <div class="train-to">高雄 <span class="train-time">15:15</span></div>
+                  </div>
+                  <div class="train-status status status--success">準點</div>
+                </div>
+                <div class="train-schedule-item">
+                  <div class="train-type">區間車</div>
+                  <div class="train-number">1147</div>
+                  <div class="train-route">
+                    <div class="train-from">高雄 <span class="train-time">15:22</span></div>
+                    <div class="train-arrow">→</div>
+                    <div class="train-to">屏東 <span class="train-time">15:50</span></div>
+                  </div>
+                  <div class="train-status status status--warning">晚5分</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="transportation-panel" data-panel="hsr">
+            <div class="transportation-search">
+              <div class="form-group">
+                <label class="form-label">高鐵班次查詢</label>
+                <div class="flex gap-8">
+                  <select class="form-control" id="hsr-from">
+                    <option value="">出發站</option>
+                    <option value="台南">台南</option>
+                    <option value="左營">左營 (高雄)</option>
+                  </select>
+                  <select class="form-control" id="hsr-to">
+                    <option value="">抵達站</option>
+                    <option value="台南">台南</option>
+                    <option value="左營">左營 (高雄)</option>
+                  </select>
+                  <button class="btn btn--primary" id="search-hsr">查詢</button>
+                </div>
+              </div>
+            </div>
+            <div class="hsr-schedule">
+              <h3>今日班次</h3>
+              <div class="hsr-schedule-list">
+                <div class="hsr-schedule-item">
+                  <div class="hsr-number">0657</div>
+                  <div class="hsr-route">
+                    <div class="hsr-from">台南 <span class="hsr-time">14:45</span></div>
+                    <div class="hsr-arrow">→</div>
+                    <div class="hsr-to">左營 <span class="hsr-time">15:10</span></div>
+                  </div>
+                  <div class="hsr-status status status--success">準點</div>
+                </div>
+                <div class="hsr-schedule-item">
+                  <div class="hsr-number">0659</div>
+                  <div class="hsr-route">
+                    <div class="hsr-from">左營 <span class="hsr-time">16:00</span></div>
+                    <div class="hsr-arrow">→</div>
+                    <div class="hsr-to">台南 <span class="hsr-time">16:25</span></div>
+                  </div>
+                  <div class="hsr-status status status--success">準點</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="transportation-panel" data-panel="mrt">
+            <div class="transportation-search">
+              <div class="form-group">
+                <label class="form-label">高雄捷運路線</label>
+                <div class="flex gap-8">
+                  <select class="form-control" id="mrt-line">
+                    <option value="">選擇路線</option>
+                    <option value="red">紅線</option>
+                    <option value="orange">橘線</option>
+                    <option value="light">輕軌</option>
+                  </select>
+                  <button class="btn btn--primary" id="search-mrt">查詢</button>
+                </div>
+              </div>
+            </div>
+            <div class="mrt-info">
+              <h3>高雄捷運資訊</h3>
+              <div class="mrt-lines">
+                <div class="mrt-line-item">
+                  <div class="mrt-line-color mrt-line-red"></div>
+                  <div class="mrt-line-info">
+                    <div class="mrt-line-name">紅線</div>
+                    <div class="mrt-line-route">小港 → 西子灣 (共24站)</div>
+                  </div>
+                  <div class="mrt-line-status status status--success">正常營運</div>
+                </div>
+                <div class="mrt-line-item">
+                  <div class="mrt-line-color mrt-line-orange"></div>
+                  <div class="mrt-line-info">
+                    <div class="mrt-line-name">橘線</div>
+                    <div class="mrt-line-route">大寮 → 西子灣 (共14站)</div>
+                  </div>
+                  <div class="mrt-line-status status status--success">正常營運</div>
+                </div>
+                <div class="mrt-line-item">
+                  <div class="mrt-line-color mrt-line-light"></div>
+                  <div class="mrt-line-info">
+                    <div class="mrt-line-name">輕軌</div>
+                    <div class="mrt-line-route">哈瑪星 → 籬仔內 (共23站)</div>
+                  </div>
+                  <div class="mrt-line-status status status--success">正常營運</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="footer-title">南台灣漫遊</h3>
+          <p>您的台灣南部旅遊專家，提供台南、高雄、屏東的全方位旅遊資訊</p>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">快速連結</h3>
+          <ul class="footer-links">
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#food">美食指南</a></li>
+            <li><a href="#attractions">景點導覽</a></li>
+            <li><a href="#activities">活動資訊</a></li>
+            <li><a href="#itineraries">行程規劃</a></li>
+            <li><a href="#transportation">交通資訊</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">聯絡我們</h3>
+          <p>電子郵件：info@southtaiwan.travel</p>
+          <p>電話：(07) 123-4567</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 南台灣漫遊網站. 版權所有。</p>
+        <p>更新日期：2025/06/19</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+README.md
+setup.py
+src/crawler/__init__.py
+src/crawler/scrapers/bib_gourmand_scraper.py
+src/crawler/scrapers/michelin_scraper.py
+src/crawler/scrapers/run_scrapers.py
+src/crawler/scrapers/tourism_scraper.py
+src/src_crawler.egg-info/PKG-INFO
+src/src_crawler.egg-info/SOURCES.txt
+src/src_crawler.egg-info/dependency_links.txt
+src/src_crawler.egg-info/top_level.txt
