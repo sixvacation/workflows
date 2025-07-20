@@ -6,11 +6,11 @@ services:
       # 設定 mysql 使用原生認證的密碼 hash
       command: mysqld --default-authentication-plugin=mysql_native_password
       ports: 
-        # docker publish port 3306 to 3306 
-        # (將 docker 內部 ip 3306, 跟外部 3306 做連結)
-          - 3306:3306
-        # - target: 3306
-        #   published: 3306
+        # docker publish port 3307 to 3307 
+        # (將 docker 內部 ip 3307, 跟外部 3307 做連結)
+          - 3307:3307
+        # - target: 3307
+        #   published: 3307
         #   mode: host
       environment: # 環境變數, 設置 db, user, password, root_password
           MYSQL_DATABASE: mydb
